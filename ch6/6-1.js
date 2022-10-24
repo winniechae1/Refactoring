@@ -1,24 +1,36 @@
 export function printOwing(invoice) {
-  let outstanding = 0;
+  // let outstanding = 0;  지역변수는 사용하는 곳과 가까운 곳에 지정해야함.
+  printBanner();
+  let outstanding = calculateOutstanding(invoice);
+  recordDueDate(invoice);
+  printDetails(invoice, outstanding);
+}
 
+function printBanner() {
   console.log("***********************");
   console.log("**** Customer Owes ****");
   console.log("***********************");
+}
 
-  // calculate outstanding
-  for (const o of invoice.orders) {
-    outstanding += o.amount;
-  }
+function calculateOutstanding(invoice) {
+  return invoice.orders.reduce((sum, order) => (sum += order.amount), 0);
+  //  let result = 0;
+  //  for (const o of invoice.orders) {
+  //    result += o.amount;
+  //  }
+  //  return result;
+}
 
-  // record due date
+function recordDueDate(invoice) {
   const today = new Date();
   invoice.dueDate = new Date(
     today.getFullYear(),
     today.getMonth(),
     today.getDate() + 30
   );
+}
 
-  //print details
+function printDetails(invoice, outstanding) {
   console.log(`name: ${invoice.customer}`);
   console.log(`amount: ${outstanding}`);
   console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
