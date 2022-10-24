@@ -4,7 +4,8 @@ export default class Book {
     this.#reservations = [];
   }
 
-  addReservation(customer) {
+  addReservation(customer, isPriority = false) {
+    // true,false 를 붙이는 flag 지금 선언 방식은 추천 안함.
     this.#reservations.push(customer);
   }
 
