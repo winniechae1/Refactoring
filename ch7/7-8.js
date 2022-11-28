@@ -1,9 +1,12 @@
 class Person {
   #name;
+  #manager;
+  #chargeCode;
   #department;
-  constructor(name, department) {
+  constructor(name, manager, chargeCode) {
     this.#name = name;
-    this.#department = department;
+    this.#manager = manager;
+    this.#chargeCode = chargeCode;
   }
 
   get name() {
@@ -11,20 +14,13 @@ class Person {
   }
 
   get manager() {
-    return this.#department.manager;
+    return this.#manager;
   }
   get chargeCode() {
-    return this.#department.chargeCode;
-  }
-  get department() {
-    return this.#department;
-  }
-
-  set department(arg) {
-    this.#department = arg;
+    return this.#chargeCode;
   }
 }
-
+/*
 export class Department {
   #manager;
   #chargeCode;
@@ -49,8 +45,8 @@ export class Department {
     this.#manager = arg;
   }
 }
-
-const person = new Person("Tom", new Department("aManager", "999"));
+*/
+const person = new Person("Tom", "aManager", "999");
 console.log(person.name);
 console.log(person.manager);
 console.log(person.chargeCode);
