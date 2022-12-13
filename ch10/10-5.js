@@ -4,30 +4,25 @@ class Hotel {
   }
 
   addRoom(roomNumber) {
-    this.rooms[roomNumber] = new roomNumber(roomNumber);
+    this.rooms[roomNumber] = new Room(roomNumber);
   }
 
   emptyRoom(roomNumber) {
-    this.rooms[roomNumber] = null;
+    this.rooms[roomNumber] = new EmptyRoom(roomNumber);
   }
 
   cleanRooms() {
     this.rooms.forEach((room) => room.clean());
   }
 }
+
 class Room {
   constructor(roomNumber) {
     this.roomNumber = roomNumber;
   }
 
   clean() {
-    console.log("깨끗하게 청소합니다.");
-  }
-}
-
-class EmptyRoom extends Room {
-  clean() {
-    console.log("방이 비어있어요.");
+    console.log(`${this.roomNumber} 깨끗하게 청소합니다!`);
   }
 }
 const hotel = new Hotel();
@@ -35,51 +30,63 @@ hotel.addRoom(0);
 hotel.addRoom(1);
 hotel.cleanRooms();
 
-//export class Site {
-//  constructor(customer) {
-//    this._customer = customer;
-//  }
+class EmptyRoom extends Room {
+  clean() {
+    console.log(`${this.roomNumber} 방이 비어있어요~~`);
+  }
+}
 
-//  get customer() {
-//    return this._customer === "unknown"
-//      ? new UnknownCustomer()
-//      : new Customer(this._customer);
-//  }
-//}
+const hotel = new Hotel();
+hotel.addRoom(0);
+hotel.addRoom(1);
+hotel.cleanRooms();
+hotel.emptyRoom(1);
+hotel.cleanRooms();
 
-//class UnknownCustomer extends Customer {
-//  get name() {
-//    return "occupant";
-//  }
-//}
+// export class Site {
+//   constructor(customer) {
+//     this._customer = customer;
+//   }
 
-//export class Customer {
-//  constructor(name) {
-//    this._name = name;
-//  }
+//   get customer() {
+//     return this._customer === 'unknown'
+//       ? new UnknownCustomer()
+//       : new Customer(this._customer);
+//   }
+// }
 
-//  get name() {
-//    return this._name;
-//  }
+// class UnknownCustomer extends Customer {
+//   get name() {
+//     return 'occupant';
+//   }
+// }
 
-//  get billingPlan() {
-//    //
-//  }
+// export class Customer {
+//   constructor(name) {
+//     this._name = name;
+//   }
 
-//  set billingPlan(arg) {
-//    //
-//  }
+//   get name() {
+//     return this._name;
+//   }
 
-//  get paymentHistory() {
-//    //
-//  }
-//}
+//   get billingPlan() {
+//     //
+//   }
 
-//// 사용하는 부분
-//export function customerName(site) {
-//  const aCustomer = site.customer;
-//  // 더 많은 코드가 여기에 있음
-//  customerName = aCustomer.name;
+//   set billingPlan(arg) {
+//     //
+//   }
 
-//  return customerName;
-//}
+//   get paymentHistory() {
+//     //
+//   }
+// }
+
+// // 사용하는 부분
+// export function customerName(site) {
+//   const aCustomer = site.customer;
+//   // 더 많은 코드가 여기에 있음
+//   customerName = aCustomer.name;
+//   return customerName;
+// }

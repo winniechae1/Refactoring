@@ -1,5 +1,5 @@
 export function adjustedCapital(instrument) {
-  if (!isEligibleForAdjustedCapital(instrument)) {
+  if (!isEligibleForAdjustedCapital) {
     return 0;
   }
   return (

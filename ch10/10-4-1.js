@@ -12,9 +12,11 @@ class Bird {
   constructor(name) {
     this.#name = name;
   }
+
   get name() {
     return this.#name;
   }
+
   get plumage() {
     return "unknown";
   }

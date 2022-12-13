@@ -1,13 +1,20 @@
-// main function
+import { dropRight, result } from "lodash";
+
 export function rating(voyage, history) {
+  if (voyage.zone === "china" && history.some((v) => "china" === v.zone)) {
+    return new ExperiencedChinaRating(voyage, history).value;
+  }
   return new Rating(voyage, history).value;
 }
+
 class Rating {
   constructor(voyage, history) {
     this.voyage = voyage;
     this.history = history;
   }
+
   get value() {
+    // 투자 등급
     const profit = this.voyageProfitFactor;
     const risk = this.voyageRisk;
     const historyRisk = this.captainHistoryRisk;
@@ -26,12 +33,8 @@ class Rating {
     let result = 1;
     if (this.history.length < 5) result += 4;
     result += this.history.filter((v) => v.profit < 0).length;
+    // if (this.voyage.zone === "china" && hasChina(this.history)) result -= 2;
     return Math.max(result, 0);
-  }
-
-  get hasChina() {
-    // 중국을 경유하는가?
-    return this.history.some((v) => "china" === v.zone);
   }
 
   get voyageProfitFactor() {
