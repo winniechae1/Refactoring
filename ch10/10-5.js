@@ -36,12 +36,12 @@ class EmptyRoom extends Room {
   }
 }
 
-const hotel = new Hotel();
-hotel.addRoom(0);
-hotel.addRoom(1);
-hotel.cleanRooms();
-hotel.emptyRoom(1);
-hotel.cleanRooms();
+//const hotel = new Hotel();
+//hotel.addRoom(0);
+//hotel.addRoom(1);
+//hotel.cleanRooms();
+//hotel.emptyRoom(1);
+//hotel.cleanRooms();
 
 // export class Site {
 //   constructor(customer) {
